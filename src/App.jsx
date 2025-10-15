@@ -2,7 +2,9 @@
 import { useEffect } from 'react';
 import './App.css'
 import { initPaint } from "./Canvas";
-import { BackFrontAunt } from "./BackFrontAunt";
+import BackFrontAunt from "/BackFrontAuntContainer.tsx"
+
+
 
 function App() {
     useEffect(() => {
