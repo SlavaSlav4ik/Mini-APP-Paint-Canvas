@@ -24,9 +24,9 @@ export function BackFrontAunt({
                                   particleCount = 250, // кол-во объектов?? максимум 500 (более нагрузит пк)
                                   particleColors = [], // есть пустой массив, то рандомный цвет будет
                                   baseColor='rgba(0, 0, 0, 0.5)' , //3 цвета и ласт прозрачность объектов движения
-                                  connectionDistance = 15, // расстояния отрисовки сетей между объектами
+                                  connectionDistance = 100, // расстояния отрисовки сетей между объектами
                                   particleSize = { min: 2, max: 5 }, // Размерность объектов
-                                  speed = { min: -2, max: 2 }, // Движение объекта лево-право??право-лево
+                                  speed = { min: -1, max: 1 }, // Движение объекта лево-право??право-лево
                                              //Тут обязательно нужно смотреть в ТТХ, чтобы сделать правильное направление
                                   mouseInteraction = true // Реакция на курсор
                               }: BackFrontAuntProps) {
@@ -65,16 +65,21 @@ export function BackFrontAunt({
             if (particleColors.length > 0) {
                 color = particleColors[Math.floor(Math.random() * particleColors.length)];
             } else {
-                const hue = Math.random() * 360;
-                const saturation = 70 + Math.random() * 30;
-                const lightness = 50 + Math.random() * 20;
+                // Меняет оттенки от 0-60/180-360
+                const hue = 240 + Math.random() * 120;
+                // Насыщенность
+                const saturation = 80 + Math.random() * 20;
+                // Яркость
+                const lightness = 30 + Math.random() * 30;
                 color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
             }
 
             particles.push({
                 x: Math.random() * canvas.width,
+                // Создаем в рандомном место объекты X||Y
                 y: Math.random() * canvas.height,
                 size: Math.random() * (particleSize.max - particleSize.min) + particleSize.min,
+                // Прописали их вначале
                 speedX: Math.random() * (speed.max - speed.min) + speed.min,
                 speedY: Math.random() * (speed.max - speed.min) + speed.min,
                 color: color
@@ -133,8 +138,9 @@ export function BackFrontAunt({
                 // Управление скоростью, когда сталкиваются с границей на X and Y
                 // Все значения обязаны быть отрицательные, чтобы они отталкивались от стен
                 // Если будет положительные значения будет ходить по границе Y and X (Не делать так)
-                if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -2;
-                if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -2;
+                // -1 - буду отталкиваться от границы, положит знач проходит через гран.
+                if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+                if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
 
                 // Ограничиваем позиции, чтобы они бились об границы экрана,
                 // Можно и убрать, тогда просто уйдут за границу.
@@ -158,15 +164,18 @@ export function BackFrontAunt({
             // Рисуем линии между близкими частицами
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
+                    // РАЗНОСТЬ координат, если брат мат. форm.
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
-                    // Тут просто меняем соединения, dx * dy + dy * dy, тут на свое усмотрение, как лучше сделать
-                    // Эксперимент dx * dy + dy * dx, как пример красивых соед.
-                    const distance = Math.sqrt(dx * dy + dy * dy);
+
+                    // Правильная формула расстояния: dx² + dy²
+                    const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < connectionDistance) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance / connectionDistance)})`;
+                        // Прозрачность зависит от расстояния
+                        // ${кол-во объектов соед 1к1 * (дистанция отрисовки линий - distance / connectionDistance)}
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${2 * (0.9 - distance / connectionDistance)})`;
                         ctx.lineWidth = 0.5;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);

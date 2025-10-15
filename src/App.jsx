@@ -1,5 +1,4 @@
-//Знаю, грязно можно было бы сделать нормально
-
+// Немного грязно получилось, но что поделать.
 import { useEffect } from 'react';
 import './App.css'
 import { initPaint } from "./Canvas";
@@ -15,6 +14,11 @@ function App() {
             <BackFrontAunt />
 
             <div className="wrapper-v2">
+
+                <div className="paint-header">
+                    <h1 className="paint-title">Paint</h1>
+                </div>
+
                 <canvas
                     id="paint"
                     className="paint"

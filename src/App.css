@@ -15,6 +15,25 @@
     z-index: 2;
 }
 
+
+.paint-header {
+    text-align: center;
+}
+
+.paint-title {
+    color: #7C3AED;
+    background: rgba(255, 255, 255, 0.9);
+    margin-top: 1rem;
+    padding: 0.02rem 22rem;
+    border-radius: 15px;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border: none;
+    backdrop-filter: blur(15px);
+}
+
 .paint {
     border: 1px solid #000;
     cursor: crosshair;
@@ -93,7 +112,6 @@ button:hover {
     background-color: #d32f2f;
 }
 
-/* Стили для ползунка */
 input[type="range"] {
     -webkit-appearance: none;
     height: 5px;
@@ -119,7 +137,6 @@ input[type="range"]::-moz-range-thumb {
     border: none;
 }
 
-/* Стили для фона */
 .BackFrontAunt {
     position: fixed !important;
     top: 0 !important;
