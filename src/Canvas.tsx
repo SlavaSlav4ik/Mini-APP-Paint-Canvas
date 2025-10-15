@@ -21,9 +21,7 @@ export function initPaint() {
         return;
     }
 
-
     initializeControls();
-
 
     canvas.onmousedown = (e) => {
         isDrawing = true;
@@ -48,7 +46,6 @@ export function initPaint() {
 }
 
 function initializeControls() {
-
     const colorInput = document.getElementById('color') as HTMLInputElement;
     if (colorInput) {
         colorInput.addEventListener('input', (e) => {
@@ -56,12 +53,10 @@ function initializeControls() {
         });
     }
 
-
     const clearButton = document.getElementById('clear') as HTMLButtonElement;
     if (clearButton) {
         clearButton.addEventListener('click', clearCanvas);
     }
-
 
     const brushSizeSlider = document.getElementById('brushSize') as HTMLInputElement;
     const brushSizeValue = document.getElementById('brushSizeValue') as HTMLSpanElement;
@@ -73,7 +68,6 @@ function initializeControls() {
         brushSizeSlider.addEventListener('input', (e) => {
             brushSize = parseInt((e.target as HTMLInputElement).value);
             brushSizeValue.textContent = brushSize.toString();
-            console.log("Brush size:", brushSize);
         });
     }
 }

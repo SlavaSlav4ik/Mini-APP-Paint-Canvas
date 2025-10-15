@@ -1,25 +1,25 @@
+//Знаю, грязно можно было бы сделать нормально
+
 import { useEffect } from 'react';
 import './App.css'
 import { initPaint } from "./Canvas";
+import { BackFrontAunt } from "./BackFrontAunt";
 
 function App() {
     useEffect(() => {
-        //Рендер после создания DOM с тайм лагом в 5 сек
         initPaint();
     }, []);
 
     return (
         <div className="wrapper">
+            <BackFrontAunt />
+
             <div className="wrapper-v2">
                 <canvas
                     id="paint"
                     className="paint"
                     width={800}
                     height={600}
-                    style={{
-                        border: '1px solid #000',
-                        cursor: 'crosshair'
-                    }}
                 ></canvas>
                 <div className="tools">
                     <div className="color-picker">

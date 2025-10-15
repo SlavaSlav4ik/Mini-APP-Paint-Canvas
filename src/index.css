@@ -26,7 +26,7 @@
 html, body {
   height: 100%;
   font-family: PT Serif, serif;
-  background: #fafafa;
+ /* background: #fafafa; */
   color: #333;
 }
 
