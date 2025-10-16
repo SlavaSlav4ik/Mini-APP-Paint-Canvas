@@ -1,35 +1,22 @@
-import { useEffect, useState } from 'react';
+// Немного грязно получилось, но что поделать.
+import { useEffect } from 'react';
 import './App.css'
 import { initPaint } from "./Canvas";
 import BackFrontAunt from "./BackFrontAuntContainer"
 
+
+
 function App() {
-    const [canvasSize, setCanvasSize] = useState({
-        width: Math.min(800, window.innerWidth - 40),
-        height: Math.min(600, window.innerHeight - 200)
-    });
-
-    useEffect(() => {
-        function handleResize() {
-            setCanvasSize({
-                width: Math.min(800, window.innerWidth - 40),
-                height: Math.min(600, window.innerHeight - 200)
-            });
-        }
-
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
     useEffect(() => {
         initPaint();
-    }, [canvasSize]);
+    }, []);
 
     return (
         <div className="wrapper">
             <BackFrontAunt />
 
             <div className="wrapper-v2">
+
                 <div className="paint-header">
                     <h1 className="paint-title">Paint</h1>
                 </div>
@@ -37,10 +24,9 @@ function App() {
                 <canvas
                     id="paint"
                     className="paint"
-                    width={canvasSize.width}
-                    height={canvasSize.height}
+                    width={800}
+                    height={600}
                 ></canvas>
-
                 <div className="tools">
                     <div className="color-picker">
                         <input
