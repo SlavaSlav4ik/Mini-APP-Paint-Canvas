@@ -1,3 +1,94 @@
+@media (min-width: 1200px) {
+    .paint-title {
+        font-size: 3rem;
+        padding: 0.5rem 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 10px;
+    }
+
+    .paint-title {
+        font-size: 1.5rem;
+        padding: 0.5rem 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .tools {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .brush-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .brush-controls label {
+        min-width: auto;
+    }
+
+    #brushSize {
+        min-width: 100%;
+    }
+
+    .color-input {
+        width: 50px;
+        height: 35px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+
+}
+
+@media (max-width: 480px) {
+    .paint-title {
+        display: grid;
+        place-items: center;
+        font-size: 2rem;
+        padding: 0.1rem 1rem;
+        letter-spacing: 3rem;
+
+    }
+
+    .paint {
+        margin: 1rem;
+    }
+
+    .tools {
+        display: grid;
+        justify-items: stretch;
+        margin-top: 10px;
+        padding: 8px;
+        gap: 1px;
+        .brush-controls {
+            gap: 3px;
+        }
+    }
+
+    .wrapper {
+        padding: 5px;
+    }
+
+    .color-picker {
+        justify-content: center;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+}
+
+
 .wrapper {
     display: flex;
     justify-content: center;
@@ -5,6 +96,8 @@
     min-height: 100vh;
     position: relative;
     overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .wrapper-v2 {
@@ -13,25 +106,28 @@
     align-items: center;
     position: relative;
     z-index: 2;
+    width: 100%;
+    max-width: 1200px;
 }
-
 
 .paint-header {
     text-align: center;
+    width: 100%;
 }
 
 .paint-title {
     color: #7C3AED;
     background: rgba(255, 255, 255, 0.9);
     margin-top: 1rem;
-    padding: 0.02rem 22rem;
+    padding: 0.5rem 2rem;
     border-radius: 15px;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 800;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     border: none;
     backdrop-filter: blur(15px);
+    display: inline-block;
 }
 
 .paint {
@@ -41,6 +137,8 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 3;
+    max-width: 100%;
+    height: auto;
 }
 
 .tools {
@@ -56,6 +154,7 @@
     max-width: 800px;
     position: relative;
     z-index: 3;
+    box-sizing: border-box;
 }
 
 .color-picker {
@@ -76,6 +175,7 @@
     display: flex;
     gap: 10px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .brush-controls label {
@@ -85,6 +185,7 @@
 
 #brushSize {
     flex-grow: 1;
+    min-width: 150px;
 }
 
 #brushSizeValue {
@@ -146,3 +247,4 @@ input[type="range"]::-moz-range-thumb {
     z-index: -1 !important;
     pointer-events: auto !important;
 }
+
